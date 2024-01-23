@@ -36,7 +36,7 @@ class Genre(models.Model):
     """Жанр"""
     name = models.CharField("Имя", max_length=100)
     description = models.TextField("Описание")
-    url = models.SlugField( max_length=130, unique=True)
+    url = models.SlugField(max_length=130, unique=True)
 
     def __str__(self):
         return self.name
@@ -108,7 +108,7 @@ class RatingStar(models.Model):
 class Rating(models.Model):
     ip = models.CharField("IP адресс", max_length=15)
     star = models.ForeignKey(RatingStar, on_delete=models.CASCADE, verbose_name="звезда")
-    id_movie = models.ForeignKey(Movie, on_delete=models.CharField, verbose_name="Фильм")
+    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE, verbose_name="Фильм")
 
     def __str__(self):
         return f"{self.star} - {self.id_movie}"
@@ -134,5 +134,3 @@ class Reviews(models.Model):
     class Meta:
         verbose_name = "Отзыв"
         verbose_name_plural = "Отзыв"
-
-

@@ -1,15 +1,13 @@
-from rest_framework.decorators import api_view, parser_classes
-from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from .models import Movie
+from django.http import HttpResponse
+from rest_framework.decorators import api_view
 from .serializers import AllMovieSerializers
 
+from .models import Movie
 
 
-@api_view(['POST'])
-@parser_classes([JSONParser])
-def example_view(request, format=None):
-    AllObjects = Movie.objects.all()
-    serializers = AllMovieSerializers(AllObjects, many=True)
-    return Response({'received data': serializers.data})
+@api_view(['GET'])
+def get(request):
+    queryset = Movie.objects.all().values()
+    # serializer = AllMovieSerializers(queryset, many=True)
+    return Response(queryset)
