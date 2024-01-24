@@ -4,7 +4,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('movie/', views.get),
+    path('category/', views.ApiCategory.as_view()),
+    path('category/<int:pk>/', views.ApiCategory.as_view()),
+    # path('movie/', views.ApiMovie.as_view()),
 
 ]
 
