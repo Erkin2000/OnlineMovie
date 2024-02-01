@@ -1,5 +1,5 @@
 from datetime import date
-
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
@@ -134,3 +134,7 @@ class Reviews(models.Model):
     class Meta:
         verbose_name = "Отзыв"
         verbose_name_plural = "Отзыв"
+
+    class Users(AbstractUser):
+        image = models.ImageField(upload_to='users_images', null=True, blank=True)
+
